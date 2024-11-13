@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: CurrencyConverterClient
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python client.py"
+  - type: web
+    name: CurrencyConverterTCPServer
+    env: python
+    startCommand: "python tcp_server.py"
+  - type: web
+    name: CurrencyConverterUDPServer
+    env: python
+    startCommand: "python udp_server.py"
