@@ -1,24 +1,21 @@
 services:
   - type: web
-    name: currency-converter-web
+    name: currency-converter-flask
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python client.py
-    autoDeploy: true
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "flask run --host=0.0.0.0 --port=5000"  # Ensures Flask app starts
     envVars:
       - key: FLASK_ENV
         value: production
-      - key: FLASK_APP
-        value: client.py
+
   - type: background
-    name: currency-converter-tcp
+    name: tcp-server
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python tcp_server.py
-    autoDeploy: true
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python tcp_server.py"  # Runs TCP server
+
   - type: background
-    name: currency-converter-udp
+    name: udp-server
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python udp_server.py
-    autoDeploy: true
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python udp_server.py"  # Runs UDP server
