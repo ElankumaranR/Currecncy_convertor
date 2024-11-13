@@ -1,6 +1,6 @@
 import socket
 
-HOST = '0.0.0.0'
+HOST = '10.0.0.1'
 PORT = 6543
 
 def currency(src, des, amt):
