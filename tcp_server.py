@@ -1,7 +1,7 @@
 import socket
 
 HOST = '0.0.0.0'
-PORT = 5555
+PORT = 6543
 
 def currency(src, des, amt):
     rates = {
