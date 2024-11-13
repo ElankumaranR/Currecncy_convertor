@@ -1,14 +1,24 @@
 services:
   - type: web
-    name: CurrencyConverterClient
+    name: currency-converter-web
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python client.py"
-  - type: web
-    name: CurrencyConverterTCPServer
+    buildCommand: pip install -r requirements.txt
+    startCommand: python client.py
+    autoDeploy: true
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_APP
+        value: client.py
+  - type: background
+    name: currency-converter-tcp
     env: python
-    startCommand: "python tcp_server.py"
-  - type: web
-    name: CurrencyConverterUDPServer
+    buildCommand: pip install -r requirements.txt
+    startCommand: python tcp_server.py
+    autoDeploy: true
+  - type: background
+    name: currency-converter-udp
     env: python
-    startCommand: "python udp_server.py"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python udp_server.py
+    autoDeploy: true
