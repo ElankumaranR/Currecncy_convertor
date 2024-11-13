@@ -33,19 +33,16 @@ def convert():
     amount = request.form['amount']
     protocol = request.form['protocol'] 
 
-   
-    server_ip = '192.168.210.228'
+    server_ip = '0.0.0.0'  # Listen on all interfaces
     server_port = 12345
-    server_adr = (server_ip, server_port)
+    server_addr = (server_ip, server_port)
 
-    
     if protocol == 'TCP':
-        response = currency_conversion_client_tcp(server_adr, source_currency, destination_currency, amount)
+        response = currency_conversion_client_tcp(server_addr, source_currency, destination_currency, amount)
     else:
-        response = currency_conversion_client_udp(server_adr, source_currency, destination_currency, amount)
+        response = currency_conversion_client_udp(server_addr, source_currency, destination_currency, amount)
 
-    
     return render_template('index.html', currencies=available_currencies, response=response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)  # Flask runs on port 5000
