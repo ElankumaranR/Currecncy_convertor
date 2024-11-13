@@ -3,19 +3,22 @@ services:
     name: currency-converter-flask
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "flask run --host=0.0.0.0 --port=5000"  # Ensures Flask app starts
+    startCommand: "python client.py"
     envVars:
       - key: FLASK_ENV
         value: production
+    port: 5000
 
   - type: background
     name: tcp-server
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python tcp_server.py"  # Runs TCP server
+    startCommand: "python tcp_server.py"
+    port: 5001
 
   - type: background
     name: udp-server
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python udp_server.py"  # Runs UDP server
+    startCommand: "python udp_server.py"
+    port: 5002
