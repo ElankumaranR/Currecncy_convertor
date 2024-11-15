@@ -33,7 +33,7 @@ def convert():
     amount = request.form['amount']
     protocol = request.form['protocol'] 
 
-    server_ip = '127.0.0.1'  # Listen on all interfaces
+    server_ip = '0.0.0.0'  # Listen on all interfaces
     server_port = 5000
     server_addr = (server_ip, server_port)
 
